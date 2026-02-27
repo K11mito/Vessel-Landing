@@ -214,11 +214,11 @@ function App() {
         <nav ref={navRef} className="navbar">
           <GlassSurface
             width="100%"
-            height="auto"
             borderRadius={50}
-            brightness={50}
-            opacity={0.93}
-            blur={20}
+            brightness={70}
+            opacity={0.97}
+            blur={28}
+            backgroundOpacity={0.18}
             distortionScale={-180}
             redOffset={0}
             greenOffset={10}
