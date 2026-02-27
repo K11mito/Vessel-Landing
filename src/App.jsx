@@ -14,6 +14,7 @@ function App() {
   const descRef = useRef(null);
   const ctaRef = useRef(null);
   const containerRef = useRef(null);
+  const statementRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -74,6 +75,22 @@ function App() {
         duration: 0.6,
         ease: 'power3.out',
       }, '-=0.4');
+
+      // Statement section scroll animation
+      if (statementRef.current) {
+        gsap.from(statementRef.current, {
+          scrollTrigger: {
+            trigger: statementRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+          },
+          y: 80,
+          opacity: 0,
+          scale: 0.9,
+          duration: 1.2,
+          ease: 'power3.out',
+        });
+      }
 
     }, containerRef);
 
@@ -146,8 +163,8 @@ function App() {
         {/* Navbar */}
         <nav ref={navRef} className="navbar">
           <div className="nav-left">
-            <a href="#" className="nav-link">Solutions</a>
-            <a href="#" className="nav-link">Insight</a>
+            <a href="#" className="nav-link">Home</a>
+            <a href="#" className="nav-link">Features</a>
             <a href="#" className="nav-link">About</a>
             <a href="#" className="nav-link">Contact</a>
           </div>
@@ -159,7 +176,7 @@ function App() {
               Get Started
               <span className="cta-arrow">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                  <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </span>
             </button>
@@ -182,21 +199,26 @@ function App() {
 
               <div className="hero-info">
                 <p ref={descRef} className="hero-desc">
-                  Vessel blends AI, system architecture, and design to
-                  build intuitive, perception-driven digital environments
-                  &mdash; redefining how humans interact with technology.
+                  Vessel is a multi-agent management system that helps you manage and create your agents in one place seamlessly using hero-mode or grid-view.
                 </p>
                 <button ref={ctaRef} className="hero-cta magnetic-btn">
                   Get Started
                   <span className="cta-arrow">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M5 12h14M12 5l7 7-7 7"/>
+                      <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
                   </span>
                 </button>
               </div>
             </div>
           </div>
+        </section>
+
+        {/* Statement */}
+        <section ref={statementRef} className="statement-section">
+          <p className="statement-text">
+            Because dealing with a gazillion terminals <span className="statement-highlight">FUCKING</span> sucks.
+          </p>
         </section>
 
         {/* Feature Showcase */}

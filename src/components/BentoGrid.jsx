@@ -4,11 +4,45 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+function VideoPreview() {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Ensure the video plays
+    const playVideo = () => {
+      video.play().catch(() => { });
+    };
+
+    video.addEventListener('loadeddata', playVideo);
+    playVideo();
+
+    return () => video.removeEventListener('loadeddata', playVideo);
+  }, []);
+
+  return (
+    <div className="video-preview">
+      <video
+        ref={videoRef}
+        src="/vessel-demo.mov"
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="video-preview-player"
+      />
+    </div>
+  );
+}
+
 const features = [
   {
-    title: 'Perception-Driven Environments',
-    desc: 'Digital spaces that adapt in real-time to user behavior, context, and intent \u2014 environments that feel alive and responsive to every interaction.',
+    title: 'Multi-Agent Management system',
+    desc: 'Manage and create your agents in one place seamlessly using hero-mode or grid-view',
     className: 'bento-card--large',
+    preview: <VideoPreview />,
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="10" />
@@ -18,8 +52,8 @@ const features = [
     ),
   },
   {
-    title: 'AI-Native Architecture',
-    desc: 'Intelligence woven into every layer. Not bolted on, but built in from the ground up.',
+    title: 'Intuitive structure',
+    desc: 'A clean, intuitive interface that makes managing your AI agents simple and straightforward.',
     className: 'bento-card--wide',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -41,8 +75,8 @@ const features = [
     ),
   },
   {
-    title: 'Intuitive Interfaces',
-    desc: 'Experiences that feel natural, reducing friction between human intent and digital response.',
+    title: 'Frictionless switching',
+    desc: 'Switch between different Agents and workflows with ease using cmd + k',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
@@ -109,9 +143,9 @@ export default function BentoGrid() {
   return (
     <section ref={sectionRef} className="bento-section">
       <div className="bento-section-header">
-        <h2 className="bento-section-title">What We Build</h2>
+        <h2 className="bento-section-title">Introducing Vessel</h2>
         <p className="bento-section-subtitle">
-          The building blocks of perception-driven technology.
+          A multi-agent management system for you to continue building.
         </p>
       </div>
       <div className="bento-grid">
@@ -121,7 +155,8 @@ export default function BentoGrid() {
             ref={(el) => (cardsRef.current[i] = el)}
             className={`bento-card ${feat.className || ''}`}
           >
-            <div className="bento-card-icon">{feat.icon}</div>
+            {!feat.preview && <div className="bento-card-icon">{feat.icon}</div>}
+            {feat.preview && <div className="bento-card-preview">{feat.preview}</div>}
             <div className="bento-card-content">
               <h3 className="bento-card-title">{feat.title}</h3>
               <p className="bento-card-desc">{feat.desc}</p>

@@ -196,6 +196,31 @@
   will-change: transform;
 }
 
+/* ===== Statement Section ===== */
+.statement-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  padding: 6rem 2.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.statement-text {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  line-height: 1.2;
+  max-width: 900px;
+  letter-spacing: -0.02em;
+}
+
+.statement-highlight {
+  color: #fff;
+}
+
 /* ===== Bento Grid Section ===== */
 .bento-section {
   padding: 6rem 0 4rem;
@@ -278,10 +303,14 @@
 }
 
 .bento-card-content {
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+}
+
+/* When a preview exists, let it grow and content stays at bottom */
+.bento-card-preview + .bento-card-content {
+  flex: 0 0 auto;
 }
 
 .bento-card-title {
@@ -311,6 +340,30 @@
 .bento-card--large .bento-card-icon {
   width: 56px;
   height: 56px;
+}
+
+/* Card preview area */
+.bento-card-preview {
+  flex: 1;
+  margin-bottom: 1.25rem;
+  min-height: 0;
+}
+
+/* ===== Video Preview ===== */
+.video-preview {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.video-preview-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
 }
 
 /* ===== Responsive ===== */
