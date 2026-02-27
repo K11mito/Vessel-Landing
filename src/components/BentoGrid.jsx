@@ -141,7 +141,7 @@ export default function BentoGrid() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bento-section">
+    <section id="features" ref={sectionRef} className="bento-section">
       <div className="bento-section-header">
         <h2 className="bento-section-title">Introducing Vessel</h2>
         <p className="bento-section-subtitle">
