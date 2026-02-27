@@ -1,7 +1,11 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ColorBends from './components/ColorBends';
+import BentoGrid from './components/BentoGrid';
 import './App.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   const navRef = useRef(null);
@@ -163,35 +167,40 @@ function App() {
         </nav>
 
         {/* Hero */}
-        <div className="hero">
-          <div className="hero-right">
-            <p ref={heroTextRef} className="hero-tagline">Enter the Future.</p>
-          </div>
+        <section className="hero-section">
+          <div className="hero">
+            <div className="hero-right">
+              <p ref={heroTextRef} className="hero-tagline">Enter the Future.</p>
+            </div>
 
-          <div className="hero-bottom">
-            <h1 ref={vesselRef} className="vessel-title">
-              {vesselLetters.map((letter, i) => (
-                <span key={i} className="vessel-letter">{letter}</span>
-              ))}
-            </h1>
+            <div className="hero-bottom">
+              <h1 ref={vesselRef} className="vessel-title">
+                {vesselLetters.map((letter, i) => (
+                  <span key={i} className="vessel-letter">{letter}</span>
+                ))}
+              </h1>
 
-            <div className="hero-info">
-              <p ref={descRef} className="hero-desc">
-                Vessel blends AI, system architecture, and design to
-                build intuitive, perception-driven digital environments
-                &mdash; redefining how humans interact with technology.
-              </p>
-              <button ref={ctaRef} className="hero-cta magnetic-btn">
-                Get Started
-                <span className="cta-arrow">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                  </svg>
-                </span>
-              </button>
+              <div className="hero-info">
+                <p ref={descRef} className="hero-desc">
+                  Vessel blends AI, system architecture, and design to
+                  build intuitive, perception-driven digital environments
+                  &mdash; redefining how humans interact with technology.
+                </p>
+                <button ref={ctaRef} className="hero-cta magnetic-btn">
+                  Get Started
+                  <span className="cta-arrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
+
+        {/* Feature Showcase */}
+        <BentoGrid />
       </div>
     </div>
   );
