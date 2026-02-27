@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ColorBends from './components/ColorBends';
 import BentoGrid from './components/BentoGrid';
+import GlassSurface from './components/GlassSurface';
 import './App.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -204,24 +205,39 @@ function App() {
       <div className="content-layer">
         {/* Navbar */}
         <nav ref={navRef} className="navbar">
-          <div className="nav-left">
-            <a href="#" className="nav-link">Home</a>
-            <a href="#features" className="nav-link">Features</a>
-            <a href="#contact" className="nav-link">Contact</a>
-          </div>
-          <div className="nav-center">
-            <span className="logo">Vessel</span>
-          </div>
-          <div className="nav-right">
-            <a href="#download" className="nav-cta magnetic-btn">
-              Get Started
-              <span className="cta-arrow">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </span>
-            </a>
-          </div>
+          <GlassSurface
+            width="100%"
+            height="auto"
+            borderRadius={50}
+            brightness={50}
+            opacity={0.93}
+            blur={20}
+            distortionScale={-180}
+            redOffset={0}
+            greenOffset={10}
+            blueOffset={20}
+          >
+            <div className="nav-inner">
+              <div className="nav-left">
+                <a href="#" className="nav-link">Home</a>
+                <a href="#features" className="nav-link">Features</a>
+                <a href="#contact" className="nav-link">Contact</a>
+              </div>
+              <div className="nav-center">
+                <span className="logo">Vessel</span>
+              </div>
+              <div className="nav-right">
+                <a href="#download" className="nav-cta magnetic-btn">
+                  Get Started
+                  <span className="cta-arrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </GlassSurface>
         </nav>
 
         {/* Hero */}
